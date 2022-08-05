@@ -37,7 +37,7 @@ conexion.connect(function(error){
     if(error){
         throw error
     }else{
-        console.log("Estás fuerte haz podido conectar la db")
+        console.log("Estás fuerte haz podido conectar la db (DATABASE : Empresas)")
     }
 })
 
@@ -46,7 +46,7 @@ conexionBecas.connect(function(error){
     if(error){
         throw error
     }else{
-        console.log("Estás requetefuerte haz podido conectar la db")
+        console.log("Estás requetefuerte haz podido conectar la db (DATABASE : Becas)")
     }
 })
 
@@ -55,7 +55,7 @@ conexionCursos.connect(function(error){
     if(error){
         throw error
     }else{
-        console.log("Estás ronniecollmen haz podido conectar la db")
+        console.log("Estás ronniecollmen haz podido conectar la db (DATABASE : Cursos)")
     }
 })
 
@@ -162,7 +162,7 @@ app.post('/api/becas', (req,res)=>{
 
 //cursos
 app.post('/api/cursos', (req,res)=>{
-    let data = {titulo:req.body.titulo, descripcion:req.body.descripcion, temario:req.body.temario, fechaIn:req.body.fechaIn, fechaFin:req.body.fechaFin, presencial:req.body.presencial, semipresencial:req.body.semipresencial, onlineCourse:req.body.onlineCourse}
+    let data = {titulo:req.body.titulo, descripcion:req.body.descripcion, temario:req.body.temario, fechaIn:req.body.fechaIn, fechaFin:req.body.fechaFin, presencial:req.body.presencial, semipresencial:req.body.semipresencial, precio:req.body.precio, onlineCourse:req.body.onlineCourse}
     let sql = "INSERT INTO cursos SET ?"
     conexionBecas.query(sql, data, function(err, result){
             if(err){
@@ -225,9 +225,10 @@ app.put('/api/cursos/:id', (req, res)=>{
     let fechaFin = req.body.fechaFin
     let presencial = req.body.presencial
     let semipresencial = req.body.semipresencial
+    let precio = req.body.precio
     let onlineCourse = req.body.onlineCourse
-    let sql = "UPDATE cursos SET titulo = ?, descripcion = ?, temario = ?, fechaIn = ? , fechaFin = ?, presencial = ?, semipresencial = ?, onlineCourse = ? WHERE id = ?"
-    conexionBecas.query(sql, [titulo, descripcion, temario, fechaIn, fechaFin, presencial, semipresencial, onlineCourse, id], function(error, results){
+    let sql = "UPDATE cursos SET titulo = ?, descripcion = ?, temario = ?, fechaIn = ? , fechaFin = ?, presencial = ?, precio = ?, semipresencial = ?, onlineCourse = ? WHERE id = ?"
+    conexionBecas.query(sql, [titulo, descripcion, temario, fechaIn, fechaFin, presencial, precio, semipresencial, onlineCourse, id], function(error, results){
         if(error){
             throw error
         }else{              
@@ -286,54 +287,3 @@ app.listen(puerto, function(){
 })
 
 
-
-
-
-
-
-///Hasta aqui ---------------------------------------------------------------
-
-
-
-
-
-
-// const dbConnection = require('./dbConnection.js');
-
-// app.use(cors());
-// app.use(express.json());
-// app.use(express.urlencoded({extended : false}));
-
-// //Create
-// app.post('/insert',(request,response)=>{
-//     const {name}=request.body;
-//     const db = dbConnection.getDbConnectionInstancia();
-
-//     const result = db.insertarNombre(name);
-
-//     result
-//     .then(data => response.json({data:data}))
-//     .catch(err => console.log(err));
-
-// });
-
-
-// //Read
-// app.get('/getAll',(request,response)=>{
-//     console.log('test');
-//     const db = dbConnection.getDbConnectionInstancia();
-//     const result = db.getAllData();
-
-//     result
-//     .then(data => response.json({data:data}))
-//     .catch(err => console.log(err));
-// })
-
-
-// //Update
- 
-
-
-// //Delete
-
-// app.listen(process.env.PORT, ()=> console.log('app is runnig'));
