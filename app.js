@@ -24,6 +24,14 @@ const conexionBecas = mysql.createConnection({
     database:'becas'
 })
 
+//enlazando base de datos cursos
+const conexionCursos = mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'Pakistan92',
+    database:'cursos'
+})
+
 //Conexión a la database
 conexion.connect(function(error){
     if(error){
@@ -39,6 +47,15 @@ conexionBecas.connect(function(error){
         throw error
     }else{
         console.log("Estás requetefuerte haz podido conectar la db")
+    }
+})
+
+//CONEXION A DATABASE Cursos
+conexionCursos.connect(function(error){
+    if(error){
+        throw error
+    }else{
+        console.log("Estás ronniecollmen haz podido conectar la db")
     }
 })
 
@@ -68,6 +85,17 @@ app.get('/api/becas', (req,res)=>{
     })
 })
 
+//Mostrar todos los cursos
+app.get('/api/cursos', (req,res)=>{
+    conexionBecas.query('SELECT * FROM cursos', (error,filas)=>{
+        if(error){
+            throw error
+        }else{
+            res.send(filas)
+        }
+    })
+})
+
 //Mostrar una SOLA Ubicacion
 app.get('/api/empresas/:id', (req,res)=>{
     conexion.query('SELECT * FROM empresas WHERE id = ?', [req.params.id], (error, fila)=>{
@@ -82,6 +110,17 @@ app.get('/api/empresas/:id', (req,res)=>{
 //BECAS
 app.get('/api/becas/:id', (req,res)=>{
     conexionBecas.query('SELECT * FROM becas WHERE id = ?', [req.params.id], (error, fila)=>{
+        if(error){
+            throw error
+        }else{
+            res.send(fila)
+        }
+    })
+})
+
+//Cursos
+app.get('/api/cursos/:id', (req,res)=>{
+    conexionBecas.query('SELECT * FROM cursos WHERE id = ?', [req.params.id], (error, fila)=>{
         if(error){
             throw error
         }else{
@@ -121,7 +160,22 @@ app.post('/api/becas', (req,res)=>{
     })
 })
 
-//Editar ubicacion
+//cursos
+app.post('/api/cursos', (req,res)=>{
+    let data = {titulo:req.body.titulo, descripcion:req.body.descripcion, temario:req.body.temario, fechaIn:req.body.fechaIn, fechaFin:req.body.fechaFin, presencial:req.body.presencial, semipresencial:req.body.semipresencial, onlineCourse:req.body.onlineCourse}
+    let sql = "INSERT INTO cursos SET ?"
+    conexionBecas.query(sql, data, function(err, result){
+            if(err){
+               throw err
+            }else{              
+             /*Esto es lo nuevo que agregamos para el CRUD con Javascript*/
+             Object.assign(data, {id: result.insertId }) //agregamos el ID al objeto data             
+             res.send(data) //enviamos los valores                         
+        }
+    })
+})
+
+//Editar empresas
  app.put('/api/empresas/:id', (req, res)=>{
      let id = req.params.id
      let nombre = req.body.nombre
@@ -160,6 +214,28 @@ app.put('/api/becas/:id', (req, res)=>{
     })
 })
 
+
+//cursos
+app.put('/api/cursos/:id', (req, res)=>{
+    let id = req.params.id
+    let titulo = req.body.titulo
+    let descripcion = req.body.descripcion
+    let temario = req.body.temario
+    let fechaIn = req.body.fechaIn
+    let fechaFin = req.body.fechaFin
+    let presencial = req.body.presencial
+    let semipresencial = req.body.semipresencial
+    let onlineCourse = req.body.onlineCourse
+    let sql = "UPDATE cursos SET titulo = ?, descripcion = ?, temario = ?, fechaIn = ? , fechaFin = ?, presencial = ?, semipresencial = ?, onlineCourse = ? WHERE id = ?"
+    conexionBecas.query(sql, [titulo, descripcion, temario, fechaIn, fechaFin, presencial, semipresencial, onlineCourse, id], function(error, results){
+        if(error){
+            throw error
+        }else{              
+            res.send(results)
+        }
+    })
+})
+
 //Eliminar ubicacion
 app.delete('/api/empresas/:id', (req,res)=>{
      conexion.query('DELETE FROM empresas WHERE id = ?', [req.params.id], function(error, filas){
@@ -187,6 +263,18 @@ app.delete('/api/becas/:id', (req,res)=>{
         }
     })
 })
+
+//cursos
+app.delete('/api/cursos/:id', (req,res)=>{
+    conexionBecas.query('DELETE FROM cursos WHERE id = ?', [req.params.id], function(error, filas){
+        if(error){
+            throw error
+        }else{              
+            res.send(filas)
+        }
+    })
+})
+
 // const puertoBecas = process.env.PUERTO || 3001
 // app.listen(puerto, function(){
 //     console.log("Servidor Ok en puerto:"+puertoBecas)
