@@ -63,6 +63,11 @@ app.get('/', function(req,res){
     res.send('Ruta INICIO')
 })
 
+app.get('/login', function(req,res){
+    res.send('Esto es login')
+    res.render("/login")
+})
+
 //Mostrar todos las empresas
 app.get('/api/empresas', (req,res)=>{
     conexion.query('SELECT * FROM empresas', (error,filas)=>{

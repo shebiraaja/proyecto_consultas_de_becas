@@ -7,7 +7,7 @@ const tipo = document.getElementById("tipo")
 const responsable = document.getElementById("responsable")
 const email = document.getElementById("email")
 const telefono = document.getElementById("telefono")
- 
+
 
 const urlBecas = "http://localhost:3000/api/becas/"
 const contenedorBecas = document.getElementById("tablebodyBecas")
@@ -21,6 +21,8 @@ const requisitos = document.getElementById("requisitos")
 const dotacion = document.getElementById("dotacion")
 const masinfo = document.getElementById("masinfo")
 let opcion = ""
+
+const urlLogin = "http://localhost:3000/login/"
 
 
 btnCrear.addEventListener("click", () => {
