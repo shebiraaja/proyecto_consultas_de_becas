@@ -8,6 +8,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+app.set("view engine", "ejs")
+
 //Establecemos los prámetros de conexión
 const conexion = mysql.createConnection({
     host:'localhost',
@@ -60,12 +62,11 @@ conexionCursos.connect(function(error){
 })
 
 app.get('/', function(req,res){
-    res.send('Ruta INICIO')
+    res.send('Ruta inicio')
 })
 
-app.get('/login', function(req,res){
-    res.send('Esto es login')
-    res.render("/login")
+app.get('/login',(req, res)=>{
+    res.render("login");
 })
 
 //Mostrar todos las empresas
