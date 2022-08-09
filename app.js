@@ -4,11 +4,29 @@ const cors = require('cors')
 const { json } = require('express')
 const app = express()
 
+// 2 - Para poder capturar los datos del formulario (sin urlencoded nos devuelve "undefined")
+app.use(express.urlencoded({extended:false}));
 
 app.use(express.json())
 app.use(cors())
 
+
+//4 -seteamos el directorio de assets
+app.use('/resources',express.static('public'));
+app.use('/resources', express.static(__dirname + '/public'));
+
 app.set("view engine", "ejs")
+
+const bcrypt = require('bcryptjs');
+
+
+// variables de session
+const session = require('express-session');
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 
 //Establecemos los prámetros de conexión
 const conexion = mysql.createConnection({
@@ -32,6 +50,14 @@ const conexionCursos = mysql.createConnection({
     user:'root',
     password:'Pakistan92',
     database:'cursos'
+})
+
+//enlazando base de datos cursos
+const conexionAuth = mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'Pakistan92',
+    database:'auth'
 })
 
 //Conexión a la database
@@ -61,12 +87,25 @@ conexionCursos.connect(function(error){
     }
 })
 
+//CONEXION A DATABASE Auth
+conexionAuth.connect(function(error){
+    if(error){
+        throw error
+    }else{
+        console.log("You're the Mr Olympia")
+    }
+})
+
 app.get('/', function(req,res){
-    res.send('Ruta inicio')
+    res.render("home");
 })
 
 app.get('/login',(req, res)=>{
     res.render("login");
+})
+
+app.get('/register',(req, res)=>{
+    res.render("register");
 })
 
 //Mostrar todos las empresas
@@ -282,14 +321,37 @@ app.delete('/api/cursos/:id', (req,res)=>{
     })
 })
 
-// const puertoBecas = process.env.PUERTO || 3001
-// app.listen(puerto, function(){
-//     console.log("Servidor Ok en puerto:"+puertoBecas)
-// })
+
+//REGISTRO DE AUTENTICACION
+app.post("/register", async (req,res) => {
+    const user = req.body.user;
+    const name = req.body.name;
+    const pass = req.body.pass;
+
+    let passwordHash = await bcrypt.hash(pass,8)
+
+    conexionAuth.query("INSERT INTO auth SET ?", {user:user, name:name, pass:passwordHash}, async(error, results) => {
+        if(error) {
+            console.log(error)
+        }else {
+            res.render("register", {
+                alert: true,
+                alertTitle: "Registration",
+                alertMessage: "!Successful Registration!",
+                alertIcon: "success",
+                showConfirmButton: "false",
+                timer: 1500,
+                ruta: ""
+            })
+        }
+    }) //en el pass:passwordHash ponemos passwordHash para que nos lo guarde en la base de datos el valor ya encriptado
+})
+
+
 
 const puerto = process.env.PUERTO || 3000
 app.listen(puerto, function(){
-    console.log("Servidor Ok en puerto:"+puerto)
+    console.log("Servidor Ok en puerto:" + puerto)
 })
 
 
