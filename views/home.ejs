@@ -1,14 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/style.css">
-    <title>Home</title>
+    <title>Becas4You</title>
+    <link href="resources/css/styles.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <h1>Pagina de Inicio</h1>
-    <h3>El usuario conectado es : </h3>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <img class="navbar-brand" src="/resources/img/logoforweb.png" alt="">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/">About Us</a>
+                        </li>
+
+                        <% if(login) { %>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="becas">Becas</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">
+
+                                    <strong>
+
+                                        <b>
+
+                                            <%= name %>
+                                        </b>
+                                    </strong>
+                                </a>
+                            </li>
+
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout">Log Out</a>
+                            </li>
+
+
+                            <% } else { %>
+                                <!-- <h1><strong><%= name %></strong></h1> -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="login">Log In</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="register">Register</a>
+                                </li>
+                                <!-- <a href="logout" type="button" class="a-logout boton2">Salir</a> -->
+                                <% } %>
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <!--Carrusel-->
+
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel-inner">
+        <div class="carousel">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="/resources/img/imagen1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="/resources/img/imagen2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/resources/img/imagen3.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <!--BUSCADOR-->
+
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <div>
+        <div class="texto-encima">Encuentra la beca que buscas</div>
+        <div class="wrapper">
+            <div class="search_box">
+                <div class="dropdown">
+                    <div class="default_option">Todos</div>
+                    <ul>
+                        <li>Becas Publicas</li>
+                        <li>Becas Privadas</li>
+                        <li>Cursos</li>
+                    </ul>
+                </div>
+                <div class="search_field">
+                    <input type="text" class="input" placeholder="Search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="./js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <!-- 
+    <% if(login) { %>
+        <h1>Hola <strong><%= name  %></strong>!</h1>
+        <a href="logout" class="a-logout">Logout</a>
+    <% } else { %>
+        <h1><strong><%= name %></strong></h1>
+        <a href="login" class="a-login">Ir al Login</a>
+    <% } %> -->
+
 </body>
+
 </html>
