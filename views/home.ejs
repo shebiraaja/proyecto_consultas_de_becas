@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <header>
+    <div>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -93,76 +93,78 @@
             </div>
         </nav>
 
-    </header>
 
-    <!--Carrusel-->
 
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel-inner">
-        <div class="carousel">
-            <div class="carousel-item active" data-bs-interval="2000">
-                <img src="/resources/img/imagen1.jpg" class="d-block w-100" alt="...">
+
+        <!--BUSCADOR-->
+
+        <div id="background-info">
+            <div id="shortimg">
+                <img src="/resources/img/imgpng.png" alt="">
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <img src="/resources/img/imagen2.jpg" class="d-block w-100" alt="...">
+            <p id="text-becas">Encuentra tu beca aquí...</p>
+
+            <p class="home-first-p">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error facilis ipsam
+                repellat!
+                Ipsam voluptatum, a
+                ratione facere ab at officiis numquam quibusdam aliquam maxime cupiditate rerum exercitationem sit
+                beatae
+                unde!
+            </p>
+
+            <a href="becas" class="btn-becas-usuario">Becas</a>
+
+        </div>
+
+
+        <div class="pasos-empresa d-flex justify-content-around">
+
+            <div class="card" style="width: 25rem; height: 400px;">
+                <img src="/resources/img/goforit1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img src="/resources/img/imagen3.jpg" class="d-block w-100" alt="...">
+
+            <div class="card" style="width: 25rem; height: 400px;">
+                <img src="/resources/img/login2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 25rem; height: 400px;">
+                <img src="/resources/img/upload3.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
             </div>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-
-    <!--BUSCADOR-->
-
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <div>
-        <div class="texto-encima">Encuentra la beca que buscas</div>
-        <div class="wrapper">
-            <div class="search_box">
-                <div class="dropdown">
-                    <div class="default_option">Todos</div>
-                    <ul>
-                        <li>Becas Publicas</li>
-                        <li>Becas Privadas</li>
-                        <li>Cursos</li>
-                    </ul>
-                </div>
-                <div class="search_field">
-                    <input type="text" class="input" placeholder="Search">
-                    <i class="fas fa-search"></i>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- partial -->
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-    <script src="./js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script> -->
+    <!-- <script src="./js/script.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
     <!-- 
-    <% if(login) { %>
-        <h1>Hola <strong><%= name  %></strong>!</h1>
-        <a href="logout" class="a-logout">Logout</a>
-    <% } else { %>
-        <h1><strong><%= name %></strong></h1>
-        <a href="login" class="a-login">Ir al Login</a>
-    <% } %> -->
+            <% if(login) { %>
+                <h1>Hola <strong><%= name  %></strong>!</h1>
+                <a href="logout" class="a-logout">Logout</a>
+                <% } else { %>
+                    <h1><strong><%= name %></strong></h1>
+                    <a href="login" class="a-login">Ir al Login</a>
+                    <% } %> -->
+
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
 </body>
 

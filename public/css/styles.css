@@ -303,16 +303,59 @@ img {
 
 }
 
-.texto-encima {
+#text-becas {
     position: absolute;
-    top: 63%;
-    left: 34%;
-    font-size: 30px;
-    font-family: 'Righteous', cursive;
+    font-size: 42px;
+    font-family: 'Poppins', sans-serif;
     color: white;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px #000;
+}
 
+#background-info {
+    background-image: url(/resources/img/mainimg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    width: 100%;
 
 }
+
+#shortimg img{
+    position: absolute;
+    height: 450px;
+    left: 1285px;
+}
+
+.home-first-p{
+    width: 600px;
+    padding-top: 120px;
+    padding-left: 30px;
+    color: #fff;
+    font-size: 23px;
+}
+
+.btn-becas-usuario {
+    font-size: 22px;
+    padding: 10px 15px;
+    /* margin: 30px 25px 10px 25px; */
+    position: relative;
+    top: 40px;
+    left: 25px;
+    border-radius:5px ;
+    background: #78A6C8;
+    text-decoration: none;
+    color: white;
+}
+
+.card {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
 
 /*Buscador*/
 
