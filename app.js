@@ -108,9 +108,9 @@ app.get('/register', (req, res) => {
     res.render("register");
 })
 
-app.get('/becas', (req, res) => {
-    res.render("becas");
-})
+// app.get('/becas', (req, res) => {
+//     res.render("becas");
+// })
 
 //Mostrar todos las empresas
 app.get('/api/empresas', (req, res) => {
@@ -408,6 +408,35 @@ app.get("/", (req, res) => {
         });
     }else {
         res.render("home", {
+            login: false,
+            name: "debe iniciar sesion"
+        })
+    }
+})
+
+app.get("/becas", (req, res) => {
+    if(req.session.loggedin) {
+        res.render("becas", {
+            login: true,
+            name: req.session.name
+        });
+    }else {
+        res.render("becas", {
+            login: false,
+            name: "debe iniciar sesion"
+        })
+    }
+})
+
+
+app.get("/becasUsuario", (req, res) => {
+    if(req.session.loggedin) {
+        res.render("becasUsuario", {
+            login: true,
+            name: req.session.name
+        });
+    }else {
+        res.render("becasUsuario", {
             login: false,
             name: "debe iniciar sesion"
         })

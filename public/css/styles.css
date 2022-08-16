@@ -4,12 +4,14 @@
     padding: 0;
     box-sizing: border-box;
     /* font-family: "Open Sans", sans-serif; */
+    font-family: roboto !important;
+
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     background: #F4F4F4;
     background-size: cover;
     height: 100%;
@@ -220,10 +222,16 @@ body {
 
 
 .navbar-brand {
-    margin: 0;
+    margin-left: 100px;
     padding: 0;
     height: 100px;
     width: 170px;
+
+}
+
+.navbar-nav{
+    padding-right: 100px;
+    font-size: 18px;
 
 }
 
