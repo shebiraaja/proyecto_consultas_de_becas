@@ -20,7 +20,7 @@ body {
 }
 
 
-/* Login form */
+/* Login */
 .login-form,
 .contenedor {
     width: 300px;
@@ -109,7 +109,6 @@ body {
 }
 
 
-
 /* form User Registration */
 .register-form {
     width: 400px;
@@ -137,39 +136,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Estilos para el select dropdown */
-.select-css {
-    display: block;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.3;
-    padding: .4em 1.4em .3em .8em;
-    width: 400px;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    background-color: #f5f5f5;
-}
-
-.select-css::-ms-expand {
-    display: none;
-}
-
-.select-css:hover {
-    border-color: #888;
-}
-
-.select-css:focus {
-    border-color: #aaa;
-    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
-    box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: #222;
-    outline: none;
-}
-
-.select-css option {
-    font-weight: normal;
-}
 
 /* Estilos boton GUARDAR*/
 .btn-save {
@@ -232,6 +198,7 @@ body {
     box-shadow: 0 0 0 3px #6B7280;
 }
 
+/*Navbar section*/
 
 .navbar-brand {
     margin-left: 100px;
@@ -247,9 +214,11 @@ body {
 
 }
 
+/*Header section*/
+
 #text-becas {
     position: absolute;
-    font-size: 42px;
+    font-size: 52px;
     font-family: 'Poppins', sans-serif;
     color: white;
     font-weight: bold;
@@ -278,14 +247,15 @@ body {
     padding-top: 0px;
     padding-right: 100px;
     color: #fff;
-    font-size: 23px;
+    font-size: 37px;
     text-align: justify;
+    margin-left: 10px;
 }
 
-.btn-becas-usuario {
+/* .btn-becas-usuario {
     font-size: 22px;
     padding: 10px 15px;
-    /* margin: 30px 25px 10px 25px; */
+    /* margin: 30px 25px 10px 25px; 
     position: relative;
     top: 40px;
     left: 100px;
@@ -293,14 +263,7 @@ body {
     background: #78A6C8;
     text-decoration: none;
     color: white;
-}
-
-.card {
-    margin-top: 50px;
-    margin-bottom: 100px;
-}
-
-
+} */
 
 section {
     position: relative;
@@ -324,6 +287,7 @@ section {
     animation: left-in 0.5s ease-in forwards;
     animation-delay: 0.5s;
     opacity: 0;
+    
 }
 
 .content h2 {
@@ -345,7 +309,8 @@ section {
     position: relative;
     display: inline-block;
     padding: 15px 30px;
-    margin-top: 20px;
+    margin-top: 70px;
+    margin-left: 10px;
     background: #ff2562;
     color: #fff;
     text-decoration: none;
@@ -354,8 +319,6 @@ section {
     font-weight: 700;
     letter-spacing: 2px;
 }
-
-
 
 .imgBx {
     position: relative;
@@ -396,6 +359,15 @@ section {
     }
 }
 
+
+/*Section of Step for register etc*/
+.card {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+
+/*About us section*/
 
 .about-section {
     width: 80%;
@@ -586,72 +558,6 @@ section {
 
 .copyright-text {
     margin: 0
-}
-
-
-.social-icons {
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none
-}
-
-.social-icons li {
-    display: inline-block;
-    margin-bottom: 4px
-}
-
-.social-icons li.title {
-    margin-right: 15px;
-    text-transform: uppercase;
-    color: #96a2b2;
-    font-weight: 700;
-    font-size: 13px
-}
-
-.social-icons a {
-    background-color: #eceeef;
-    color: #818a91;
-    font-size: 16px;
-    display: inline-block;
-    line-height: 44px;
-    width: 44px;
-    height: 44px;
-    text-align: center;
-    margin-right: 8px;
-    border-radius: 100%;
-    -webkit-transition: all .2s linear;
-    -o-transition: all .2s linear;
-    transition: all .2s linear
-}
-
-.social-icons a:active,
-.social-icons a:focus,
-.social-icons a:hover {
-    color: #fff;
-    background-color: #29aafe
-}
-
-.social-icons.size-sm a {
-    line-height: 34px;
-    height: 34px;
-    width: 34px;
-    font-size: 14px
-}
-
-.social-icons a.facebook:hover {
-    background-color: #3b5998
-}
-
-.social-icons a.twitter:hover {
-    background-color: #00aced
-}
-
-.social-icons a.linkedin:hover {
-    background-color: #007bb6
-}
-
-.social-icons a.dribbble:hover {
-    background-color: #ea4c89
 }
 
 .ocultar {
