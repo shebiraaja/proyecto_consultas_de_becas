@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -42,11 +43,22 @@ body {
     box-sizing: border-box;
 }
 
+.login-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 0px 20px 60px 20px;
+    margin-top: 35px;
+    font-family: roboto;
+    text-align: left !important;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+}
+
 /* Estilos boton LOGIN*/
 .btn-login {
     width: 100%;
     padding: 15px;
-    background-color: #6f42c1;
+    background-color: #2b2538;
     border: 0;
     box-sizing: border-box;
     cursor: pointer;
@@ -58,7 +70,7 @@ body {
 .btn-login:hover,
 .btn-login:active {
     color: #fff;
-    background-color: #61428f;
+    background-color: #160038;
     border-color: #61428f
 }
 
@@ -70,7 +82,7 @@ body {
 .btn-register {
     width: 100%;
     padding: 15px;
-    background-color: #34D399;
+    background-color: #095802;
     border: 0;
     box-sizing: border-box;
     cursor: pointer;
@@ -229,7 +241,7 @@ body {
 
 }
 
-.navbar-nav{
+.navbar-nav {
     padding-right: 100px;
     font-size: 18px;
 
@@ -342,6 +354,8 @@ section {
     font-weight: 700;
     letter-spacing: 2px;
 }
+
+
 
 .imgBx {
     position: relative;
@@ -642,4 +656,49 @@ section {
 
 .ocultar {
     display: none;
+}
+
+#buscar {
+    position: relative;
+    left: 425px;
+    width: 50%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 22px;
+    /* text-align: center; */
+}
+
+#leermas {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 20px;
+    background: #ff2562;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+@media only screen and (max-width: 900px) and (min-width: 100px) {
+    .imgBx {
+        display: none;
+    }
+
+    #text-becas {
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        font-weight: bold;
+        margin-left: -100px;
+        margin-top: -100px;
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    .home-first-p {
+        margin-left: -100px;
+
+    }
 }

@@ -24,6 +24,33 @@ let opcion = ""
 
 // const urlLogin = "http://localhost:3000/login/"
 
+const inputBuscar = document.getElementById("buscar")
+const celdas = document.getElementsByClassName("filas")
+const ths = document.getElementsByClassName("ths")
+
+inputBuscar.addEventListener("keyup", (e) => {
+
+    // ths.style.display = "none"
+
+    
+    let texto = e.target.value
+    let er = new RegExp(texto, "i")
+    for(let i=0; i<celdas.length; i++) {
+        let valor = celdas[i]
+        // console.log(valor)
+        
+        if(er.test(valor.innerText)){
+            valor.classList.remove("ocultar")
+        }else {
+            console.log(valor)
+            // ths.classList.add("ocultar")
+            valor.classList.add("ocultar")
+        }
+    }
+
+
+})
+
 
 // btnCrear.addEventListener("click", () => {
 //     descripcion.value = "";
@@ -58,7 +85,7 @@ let opcion = ""
 const mostrarBecas = (becas) => {
     becas.forEach(beca => {
         resultadosBecas += `
-                        <tr>
+                        <tr class="filas">
                             <td>${beca.id}</td>
                             <td>${beca.descripcion}</td>
                             <td>${beca.destinatarios}</td>

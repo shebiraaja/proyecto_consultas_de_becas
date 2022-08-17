@@ -11,6 +11,7 @@
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     <link rel="stylesheet" href="/resources/css/styles.css">
+    <link rel="shortcut icon" type="image/png" href="/resources/img/favicon.png">
 
     
 </head>
@@ -50,11 +51,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">About Us</a>
+                        <a class="nav-link" aria-current="page" href="/">Conócenos</a>
                     </li>
 
                     <% if(login) { %>
@@ -81,18 +82,18 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="logout">Log Out</a>
+                            <a class="nav-link" href="logout">Salir</a>
                         </li>
 
 
                         <% } else { %>
                             <!-- <h1><strong><%= name %></strong></h1> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="login">Log In</a>
+                                <a class="nav-link" href="login">Iniciar Sesion</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="register">Register</a>
+                                <a class="nav-link" href="register">Registrar</a>
                             </li>
                             <!-- <a href="logout" type="button" class="a-logout boton2">Salir</a> -->
                             <% } %>
@@ -103,13 +104,12 @@
         </div>
     </nav>
 
-    <input id="buscar" type="text" placeholder="Buscar...">
 
-    <div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
-        <button id="btnCrear" type="button" class="btn btn-primary" data-bs-toggle="modal">Crear</button>
+    <div class="m-5 shadow-lg p-3 mb-5 bg-body">
         <table id="tablaBecas" class="table mt-2 table-bordered table-striped">
             <thead>
                 <h1>Becas</h1>
+                <button id="btnCrear" type="button" class="btn btn-primary" data-bs-toggle="modal">Crear</button>
                 <tr class="text-center">
                     <th>ID</th>
                     <th>Descripcion</th>
@@ -138,28 +138,28 @@
                     <form id="formBeca">
                         <div class="mb-3">
                             <label for="descripcion" class="col-form-label">Descripcion:</label>
-                            <input id="descripcion" type="text" class="form-control" id="recipient-name">
+                            <input id="descripcion" type="text" class="form-control" id="recipient-name" required>
                         </div>
                         <div class="mb-3">
                             <label for="destinatarios" class="col-form-label">Destinatarios:</label>
-                            <input id="destinatarios" type="text" class="form-control" id="recipient-name">
+                            <input id="destinatarios" type="text" class="form-control" id="recipient-name" required>
                         </div>
                         <div class="mb-3">
                             <!--Aqui deberiamos hacer o un checkbox o una lista donde las "empresas puedan elegir si son Particulares, Academias o Fundaciones"-->
                             <label for="numeroplazas" class="col-form-label">Numero de Plazas:</label>
-                            <input id="numeroplazas" type="text" class="form-control" id="recipient-name">
+                            <input id="numeroplazas" type="text" class="form-control" id="recipient-name" required>
                         </div>
                         <div class="mb-3">
                             <label for="requisitos" class="col-form-label">Requisitos:</label>
-                            <input id="requisitos" type="text" class="form-control" id="recipient-name">
+                            <input id="requisitos" type="text" class="form-control" id="recipient-name" required>
                         </div>
                         <div class="mb-3">
                             <label for="dotacion" class="col-form-label">Dotacion:</label>
-                            <input id="dotacion" type="email" class="form-control" id="recipient-name">
+                            <input id="dotacion" type="text" class="form-control" id="recipient-name" required>
                         </div>
                         <div class="mb-3">
                             <label for="masinfo" class="col-form-label">Mas Informacion:</label>
-                            <input id="masinfo" type="number" class="form-control" id="recipient-name">
+                            <input id="masinfo" type="text" class="form-control" id="recipient-name" required>
                         </div>
 
                         <div class="modal-footer">

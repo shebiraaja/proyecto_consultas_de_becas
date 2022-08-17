@@ -24,26 +24,6 @@ let opcion = ""
 
 // const urlLogin = "http://localhost:3000/login/"
 
-const inputBuscar = document.getElementById("buscar")
-const celdas = document.getElementsByTagName("tr")
-
-inputBuscar.addEventListener("keyup", (e) => {
-    let texto = e.target.value
-    let er = new RegExp(texto, "i")
-    for(let i=0; i<celdas.length; i++) {
-        let valor = celdas[i]
-        // console.log(valor)
-
-        if(er.test(valor.innerText)){
-            valor.classList.remove("ocultar")
-        }else {
-            console.log(valor)
-            valor.classList.add("ocultar")
-        }
-    }
-
-
-})
 
 btnCrear.addEventListener("click", () => {
     descripcion.value = "";
@@ -61,7 +41,6 @@ const mostrar = (empresas) => {
     empresas.forEach(empresa => {
         resultados += `
                         <tr>
-                            <td>${empresa.id}</td>
                             <td>${empresa.nombre}</td>
                             <td>${empresa.direccion}</td>
                             <td>${empresa.tipo}</td>
@@ -78,7 +57,7 @@ const mostrar = (empresas) => {
 const mostrarBecas = (becas) => {
     becas.forEach(beca => {
         resultadosBecas += `
-                        <tr>
+                        <tbody>
                             <td>${beca.id}</td>
                             <td>${beca.descripcion}</td>
                             <td>${beca.destinatarios}</td>
@@ -86,8 +65,8 @@ const mostrarBecas = (becas) => {
                             <td>${beca.requisitos}</td>
                             <td>${beca.dotacion}</td>
                             <td>${beca.masinfo}</td>
-                            <td class="text-center"><a class="btnEditar btn btn-primary">Editar</a> <a class="btnBorrar btn btn-primary">Eliminar</a> </td>
-                        </tr>
+                            <td class="text-center"><a class="mb-3 btnEditar btn btn-primary">Editar</a>  <a class="btnBorrar btn btn-danger">Eliminar</a> </td>
+                        </tbody>
         `
     });
     contenedorBecas.innerHTML = resultadosBecas
@@ -126,7 +105,7 @@ on(document, "click", ".btnBorrar", e => {
     const id = fila.firstElementChild.innerHTML //nos trae el id, si no ponemos innerHTML nos dará el id pero con lo HTML tags tambien
     // console.log(id)
 
-    alertify.confirm("This is a confirm dialog.",
+    alertify.confirm("Eliminar","¿Estas seguro que quieres eliminar esta fila?",
         function () {
             fetch(urlBecas + id, {
                 method: "DELETE"
@@ -136,7 +115,7 @@ on(document, "click", ".btnBorrar", e => {
             //alertify.success('Ok')
         },
         function () {
-            alertify.error('Cancel')
+            alertify.error('Cancelado')
         })
 })
 
