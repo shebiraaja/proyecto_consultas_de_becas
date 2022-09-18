@@ -48,11 +48,17 @@
 <div class="register-form">
     <h1>Registrate</h1>
     <form action="/register" method="POST">
-        <label for="user">Usuario</label>
-        <input type="text" name="user" placeholder="Usuario" required tabindex="1" autofocus>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" placeholder="Nombre" required tabindex="1" autofocus>
 
-        <label for="name">Nombre completo</label>
-        <input type="text" name="name" placeholder="Nombre Completo" required tabindex="2">
+        <label for="apellido1">Apellido 1</label>
+        <input type="text" name="apellido1" placeholder="Apellido1" required tabindex="2">
+
+        <label for="apellido2">Apellido 2</label>
+        <input type="text" name="apellido2" placeholder="Apellido2" required tabindex="2">
+
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Email" required tabindex="2">
 
         <!-- <label for="rol">Rol</label>                          
             <select id="rol" name="rol" class="select-css" tabindex="3">

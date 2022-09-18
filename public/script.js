@@ -1,70 +1,69 @@
-const url = "http://localhost:3000/api/empresas/"
-const contenedor = document.getElementById("tablebodyEmpresas")
-let resultados = ""
-const nombre = document.getElementById("nombre")
-const direccion = document.getElementById("direccion")
-const tipo = document.getElementById("tipo")
-const responsable = document.getElementById("responsable")
-const email = document.getElementById("email")
-const telefono = document.getElementById("telefono")
+// const url = "http://localhost:3000/api/empresas/"
+// const contenedor = document.getElementById("tablebodyEmpresas")
+// let resultados = ""
+// const nombre = document.getElementById("nombre")
+// const direccion = document.getElementById("direccion")
+// const tipo = document.getElementById("tipo")
+// const responsable = document.getElementById("responsable")
+// const email = document.getElementById("email")
+// const telefono = document.getElementById("telefono")
 
 
-const urlBecas = "http://localhost:3000/api/becas/"
+const urlTrabajo = "http://localhost:3000/api/trabajo/"
 const contenedorBecas = document.getElementById("tablebodyBecas")
 let resultadosBecas = ""
 const formBeca = document.getElementById("formBeca")
 const modalBecas = new bootstrap.Modal(document.getElementById('modalBeca'))
-const descripcion = document.getElementById("descripcion")
-const destinatarios = document.getElementById("destinatarios")
-const numeroplazas = document.getElementById("numeroplazas")
-const requisitos = document.getElementById("requisitos")
-const dotacion = document.getElementById("dotacion")
-const masinfo = document.getElementById("masinfo")
+const fecha = document.getElementById("fecha")
+const trabajo = document.getElementById("trabajo")
+const email = document.getElementById("email")
+// const requisitos = document.getElementById("requisitos")
+// const dotacion = document.getElementById("dotacion")
+// const masinfo = document.getElementById("masinfo")
+// const id_user = document.getElementById("id_user")
 let opcion = ""
 
 // const urlLogin = "http://localhost:3000/login/"
 
+const btnCrear = document.getElementById("btnCrear")
 
 btnCrear.addEventListener("click", () => {
-    descripcion.value = "";
-    destinatarios.value = "";
-    numeroplazas.value = "";
-    requisitos.value = "";
-    dotacion.value = "";
-    masinfo.value = "";
+    fecha.value = "";
+    trabajo.value = "";
+    email.value = "";
+    // requisitos.value = "";
+    // dotacion.value = "";
+    // masinfo.value = "";
+    // id_user.value = "";
     modalBecas.show()
     opcion = "crear"
 })
 
 //funcion para mostrar los resultados
-const mostrar = (empresas) => {
-    empresas.forEach(empresa => {
-        resultados += `
-                        <tr>
-                            <td>${empresa.nombre}</td>
-                            <td>${empresa.direccion}</td>
-                            <td>${empresa.tipo}</td>
-                            <td>${empresa.responsable}</td>
-                            <td>${empresa.email}</td>
-                            <td>${empresa.telefono}</td>
-                        </tr>
-        `
-    });
-    contenedor.innerHTML = resultados
-}
+// const mostrar = (empresas) => {
+//     empresas.forEach(empresa => {
+//         resultados += `
+//                         <tr>
+//                             <td>${empresa.fecha}</td>
+//                             <td>${empresa.trabajo}</td>
+//                             <td>${empresa.email}</td>
+//                         </tr>
+//         `
+//     });
+//     contenedor.innerHTML = resultados
+// }
 
 //becas funcion mostrar
-const mostrarBecas = (becas) => {
+const mostrarTrabajo = (becas) => {
     becas.forEach(beca => {
         resultadosBecas += `
                         <tbody>
+                        <tr>
                             <td>${beca.id}</td>
-                            <td>${beca.descripcion}</td>
-                            <td>${beca.destinatarios}</td>
-                            <td>${beca.numeroplazas}</td>
-                            <td>${beca.requisitos}</td>
-                            <td>${beca.dotacion}</td>
-                            <td>${beca.masinfo}</td>
+                            <td>${beca.fecha}</td>
+                            <td>${beca.trabajo}</td>
+                            <td>${beca.email}</td>
+                        </tr>
                             <td class="text-center"><a class="mb-3 btnEditar btn btn-primary">Editar</a>  <a class="btnBorrar btn btn-danger">Eliminar</a> </td>
                         </tbody>
         `
@@ -73,19 +72,19 @@ const mostrarBecas = (becas) => {
 }
 
 //procedimiento para mostrar los datos
-fetch(url)
+// fetch(url)
+//     .then(resp => resp.json()) //meaning --> when you try to fetch(obtener) data from a server, it will send you a RESPONSE which contains tons of irrelevant information. To target only the BODY part information of the response and to convert it from JSON to javascript, you use res. json().
+//     // .then(resp => console.log(resp.json()))
+//     // .then(data => console.log(data))
+//     .then(data => mostrar(data))
+//     .catch(error => console.log(error))
+
+
+fetch(urlTrabajo)
     .then(resp => resp.json()) //meaning --> when you try to fetch(obtener) data from a server, it will send you a RESPONSE which contains tons of irrelevant information. To target only the BODY part information of the response and to convert it from JSON to javascript, you use res. json().
     // .then(resp => console.log(resp.json()))
     // .then(data => console.log(data))
-    .then(data => mostrar(data))
-    .catch(error => console.log(error))
-
-
-fetch(urlBecas)
-    .then(resp => resp.json()) //meaning --> when you try to fetch(obtener) data from a server, it will send you a RESPONSE which contains tons of irrelevant information. To target only the BODY part information of the response and to convert it from JSON to javascript, you use res. json().
-    // .then(resp => console.log(resp.json()))
-    // .then(data => console.log(data))
-    .then(data => mostrarBecas(data))
+    .then(data => mostrarTrabajo(data))
     .catch(error => console.log(error))
 
 //Procedimiento de conseguir pulsar en boton eliminar
@@ -107,7 +106,7 @@ on(document, "click", ".btnBorrar", e => {
 
     alertify.confirm("Eliminar","¿Estas seguro que quieres eliminar esta fila?",
         function () {
-            fetch(urlBecas + id, {
+            fetch(urlTrabajo + id, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -127,23 +126,23 @@ on(document, "click", ".btnEditar", e => {
     console.log(fila)
     idForm = fila.children[0].innerHTML //estamos capturando el child 0 que seria el id, esta es la segunda manera tambien se podria de la primera que hemos hecho en la funcion de arriba
     console.log(idForm)
-    const descripcionForm = fila.children[1].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
+    const fechaForm = fila.children[1].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
     //console.log(direccionForm)
-    const destinatariosForm = fila.children[2].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
+    const trabajoForm = fila.children[2].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
     //console.log(numeroForm)
-    const numeroplazasForm = fila.children[3].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
+    const emailForm = fila.children[3].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
     //console.log(provinciaForm)
     //console.log(`ID: ${idForm} , direccion: ${direccionForm}, numero: ${numeroForm}, provincia: ${provinciaForm}`)
-    const requisitosForm = fila.children[4].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
-    const dotacionForm = fila.children[5].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
-    const masinfoForm = fila.children[6].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
+    // const requisitosForm = fila.children[4].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
+    // const dotacionForm = fila.children[5].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
+    // const masinfoForm = fila.children[6].innerHTML //estamos capturando el child 1 que seria la descripcion, el child 2 seria el numero, y el 3 provincia
 
-    descripcion.value = descripcionForm
-    destinatarios.value = destinatariosForm
-    numeroplazas.value = numeroplazasForm
-    requisitos.value = requisitosForm
-    dotacion.value = dotacionForm
-    masinfo.value = masinfoForm
+    fecha.value = fechaForm
+    trabajo.value = trabajoForm
+    email.value = emailForm
+    // requisitos.value = requisitosForm
+    // dotacion.value = dotacionForm
+    // masinfo.value = masinfoForm
     opcion = "editar"
     modalBecas.show()
 })
@@ -154,18 +153,19 @@ formBeca.addEventListener("submit", (e) => {
 
     if (opcion == "crear") {
         //console.log("opcion crear")
-        fetch(urlBecas, {
+        fetch(urlTrabajo, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                descripcion: descripcion.value,
-                destinatarios: destinatarios.value,
-                numeroplazas: numeroplazas.value,
-                requisitos: requisitos.value,
-                dotacion: dotacion.value,
-                masinfo: masinfo.value,
+                fecha: fecha.value,
+                trabajo: trabajo.value,
+                email: email.value,
+                // requisitos: requisitos.value,
+                // dotacion: dotacion.value,
+                // masinfo: masinfo.value,
+                // id_user: id_user.value,
 
             })
         })
@@ -173,25 +173,22 @@ formBeca.addEventListener("submit", (e) => {
             .then(data => {
                 const nuevabeca = []
                 nuevabeca.push(data)
-                mostrarBecas(nuevabeca)
+                mostrarTrabajo(nuevabeca)
             })
     }
 
     if (opcion == "editar") {
         console.log("opcion editar")
-        console.log(urlBecas+idForm)
-        fetch(urlBecas + idForm, {
+        console.log(urlTrabajo+idForm)
+        fetch(urlTrabajo + idForm, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                descripcion: descripcion.value,
-                destinatarios: destinatarios.value,
-                numeroplazas: numeroplazas.value,
-                requisitos: requisitos.value,
-                dotacion: dotacion.value,
-                masinfo: masinfo.value,
+                fecha: fecha.value,
+                trabajo: trabajo.value,
+                email: email.value,
 
             })
         })

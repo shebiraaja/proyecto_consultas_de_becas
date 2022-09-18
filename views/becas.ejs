@@ -73,7 +73,7 @@
 
                                     <b>
 
-                                        <%= name %>
+                                        <%= nombre %>
                                     </b>
                                 </strong>
                             </a>
@@ -87,7 +87,6 @@
 
 
                         <% } else { %>
-                            <!-- <h1><strong><%= name %></strong></h1> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="login">Iniciar Sesion</a>
                             </li>
@@ -112,12 +111,13 @@
                 <button id="btnCrear" type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" style="float: right;">Crear</button>
                 <tr class="text-center">
                     <th>ID</th>
-                    <th>Descripcion</th>
-                    <th>Destinatarios</th>
-                    <th>Numero de Plazas</th>
+                    <th>Fecha</th>
+                    <th>Trabajo</th>
+                    <th>Email</th>
+                    <!-- <th>Numero de Plazas</th>
                     <th>Requisitos</th>
                     <th>Dotacion</th>
-                    <th>Mas Informacion</th>
+                    <th>Mas Informacion</th> -->
                 </tr>
             </thead>
 
@@ -131,25 +131,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="exampleModalLabel">Becas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Trabajo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formBeca">
                         <div class="mb-3">
-                            <label for="descripcion" class="col-form-label">Descripcion:</label>
-                            <input id="descripcion" type="text" class="form-control" id="recipient-name" required>
+                            <label for="fecha" class="col-form-label">Fecha:</label>
+                            <input id="fecha" type="date" class="form-control" id="recipient-name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="destinatarios" class="col-form-label">Destinatarios:</label>
-                            <input id="destinatarios" type="text" class="form-control" id="recipient-name" required>
+                            <label for="trabajo" class="col-form-label">Trabajo:</label>
+                            <input id="trabajo" type="text" class="form-control" id="recipient-name" required>
                         </div>
                         <div class="mb-3">
                             <!--Aqui deberiamos hacer o un checkbox o una lista donde las "empresas puedan elegir si son Particulares, Academias o Fundaciones"-->
-                            <label for="numeroplazas" class="col-form-label">Numero de Plazas:</label>
-                            <input id="numeroplazas" type="text" class="form-control" id="recipient-name" required>
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input id="email" type="email" class="form-control" id="recipient-name" required>
                         </div>
-                        <div class="mb-3">
+
+                        <!-- <div class="mb-3">
                             <label for="requisitos" class="col-form-label">Requisitos:</label>
                             <input id="requisitos" type="text" class="form-control" id="recipient-name" required>
                         </div>
@@ -161,6 +162,11 @@
                             <label for="masinfo" class="col-form-label">Mas Informacion:</label>
                             <input id="masinfo" type="text" class="form-control" id="recipient-name" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="id_user" class="col-form-label">User Id:</label>
+                            <input id="id_user" type="number" class="form-control" id="recipient-name" required>
+                        </div> -->
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

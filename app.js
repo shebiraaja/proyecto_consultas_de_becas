@@ -1,6 +1,6 @@
 const express = require('express')
 const mysql = require('mysql')
-const cors = require('cors')
+const cors = require('cors') 
 const { json } = require('express')
 const app = express()
 
@@ -28,49 +28,26 @@ app.use(session({
     saveUninitialized: true
 }));
 
-//Establecemos los prámetros de conexión
-const conexion = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Pakistan92',
-    database: 'empresas'
-})
 
 //BECAS
-const conexionBecas = mysql.createConnection({
+const conexion = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Pakistan92',
     database: 'becas'
 })
 
-//enlazando base de datos cursos
-const conexionCursos = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Pakistan92',
-    database: 'cursos'
-})
 
-//enlazando base de datos cursos
-const conexionAuth = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Pakistan92',
-    database: 'auth'
-})
+//enlazando base de datos Auth
+// const conexionAuth = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Pakistan92',
+//     database: 'becas'
+// })
 
-//Conexión a la database
+//CONEXION A DATABASE
 conexion.connect(function (error) {
-    if (error) {
-        throw error
-    } else {
-        console.log("Estás fuerte haz podido conectar la db (DATABASE : Empresas)")
-    }
-})
-
-//CONEXION A DATABASE BECAS
-conexionBecas.connect(function (error) {
     if (error) {
         throw error
     } else {
@@ -78,23 +55,15 @@ conexionBecas.connect(function (error) {
     }
 })
 
-//CONEXION A DATABASE Cursos
-conexionCursos.connect(function (error) {
-    if (error) {
-        throw error
-    } else {
-        console.log("Estás ronniecollmen haz podido conectar la db (DATABASE : Cursos)")
-    }
-})
 
 //CONEXION A DATABASE Auth
-conexionAuth.connect(function (error) {
-    if (error) {
-        throw error
-    } else {
-        console.log("You're the Mr Olympia")
-    }
-})
+// conexionAuth.connect(function (error) {
+//     if (error) {
+//         throw error
+//     } else {
+//         console.log("You're the Mr Olympia")
+//     }
+// })
 
 // app.get('/', function (req, res) {
 //     res.render("home");
@@ -112,20 +81,11 @@ app.get('/register', (req, res) => {
 //     res.render("becas");
 // })
 
-//Mostrar todos las empresas
-app.get('/api/empresas', (req, res) => {
-    conexion.query('SELECT * FROM empresas', (error, filas) => {
-        if (error) {
-            throw error
-        } else {
-            res.send(filas)
-        }
-    })
-})
+
 
 //BECAS
-app.get('/api/becas', (req, res) => {
-    conexionBecas.query('SELECT * FROM becas', (error, filas) => {
+app.get('/api/trabajo:id', (req, res) => {
+    conexion.query('SELECT * FROM trabajo WHERE id = ?', [req.params.id], (error, filas) => {
         if (error) {
             throw error
         } else {
@@ -134,9 +94,8 @@ app.get('/api/becas', (req, res) => {
     })
 })
 
-//Mostrar todos los cursos
-app.get('/api/cursos', (req, res) => {
-    conexionBecas.query('SELECT * FROM cursos', (error, filas) => {
+app.get('/api/trabajo', (req, res) => {
+    conexion.query('SELECT * FROM trabajo WHERE id_taxidriver = ?', [req.params.id], (error, filas) => {
         if (error) {
             throw error
         } else {
@@ -145,49 +104,37 @@ app.get('/api/cursos', (req, res) => {
     })
 })
 
-//Mostrar una SOLA Ubicacion
-app.get('/api/empresas/:id', (req, res) => {
-    conexion.query('SELECT * FROM empresas WHERE id = ?', [req.params.id], (error, fila) => {
-        if (error) {
-            throw error
-        } else {
-            res.send(fila)
-        }
-    })
-})
+// //BECAS
+// app.get('/api/becas/:id', (req, res) => {
+//     conexionBecas.query('SELECT * FROM becas id = ?', [req.params.id], (error, fila) => {
+//         if (error) {
+//             throw error
+//         } else {
+//             res.send(fila)
+//         }
+//     })
+// })
+
+
 
 //BECAS
-app.get('/api/becas/:id', (req, res) => {
-    conexionBecas.query('SELECT * FROM becas WHERE id = ?', [req.params.id], (error, fila) => {
-        if (error) {
-            throw error
-        } else {
-            res.send(fila)
-        }
-    })
-})
-
-//Cursos
-app.get('/api/cursos/:id', (req, res) => {
-    conexionBecas.query('SELECT * FROM cursos WHERE id = ?', [req.params.id], (error, fila) => {
-        if (error) {
-            throw error
-        } else {
-            res.send(fila)
-        }
-    })
-})
-
-//Crear una FILA DE EMPRESA
-app.post('/api/empresas', (req, res) => {
-    let data = { nombre: req.body.nombre, direccion: req.body.direccion, tipo: req.body.tipo, responsable: req.body.responsable, email: req.body.email, telefono: req.body.telefono }
-    let sql = "INSERT INTO empresas SET ?"
+app.post('/api/trabajo', (req, res) => {
+    let data = { 
+        fecha: req.body.fecha, 
+        trabajo: req.body.trabajo, 
+        email: req.body.email
+        // requisitos: req.body.requisitos, 
+        // dotacion: req.body.dotacion, 
+        // masinfo: req.body.masinfo,
+        // id_user: req.body.id_user
+    }
+    let sql = "INSERT INTO trabajo SET ?"
     conexion.query(sql, data, function (err, result) {
         if (err) {
             throw err
         } else {
             /*Esto es lo nuevo que agregamos para el CRUD con Javascript*/
-            Object.assign(data, { id: result.insertId }) //agregamos el ID al objeto data             
+            Object.assign(data, { id: result.insertId, id_Taxista: result.insertId }) //agregamos el ID al objeto data             
             res.send(data) //enviamos los valores                         
         }
     })
@@ -195,46 +142,18 @@ app.post('/api/empresas', (req, res) => {
 
 
 //BECAS
-app.post('/api/becas', (req, res) => {
-    let data = { descripcion: req.body.descripcion, destinatarios: req.body.destinatarios, numeroplazas: req.body.numeroplazas, requisitos: req.body.requisitos, dotacion: req.body.dotacion, masinfo: req.body.masinfo }
-    let sql = "INSERT INTO becas SET ?"
-    conexionBecas.query(sql, data, function (err, result) {
-        if (err) {
-            throw err
-        } else {
-            /*Esto es lo nuevo que agregamos para el CRUD con Javascript*/
-            Object.assign(data, { id: result.insertId }) //agregamos el ID al objeto data             
-            res.send(data) //enviamos los valores                         
-        }
-    })
-})
-
-//cursos
-app.post('/api/cursos', (req, res) => {
-    let data = { titulo: req.body.titulo, descripcion: req.body.descripcion, temario: req.body.temario, fechaIn: req.body.fechaIn, fechaFin: req.body.fechaFin, presencial: req.body.presencial, semipresencial: req.body.semipresencial, precio: req.body.precio, onlineCourse: req.body.onlineCourse }
-    let sql = "INSERT INTO cursos SET ?"
-    conexionBecas.query(sql, data, function (err, result) {
-        if (err) {
-            throw err
-        } else {
-            /*Esto es lo nuevo que agregamos para el CRUD con Javascript*/
-            Object.assign(data, { id: result.insertId }) //agregamos el ID al objeto data             
-            res.send(data) //enviamos los valores                         
-        }
-    })
-})
-
-//Editar empresas
-app.put('/api/empresas/:id', (req, res) => {
+app.put('/api/trabajo/:id', (req, res) => {
     let id = req.params.id
-    let nombre = req.body.nombre
-    let direccion = req.body.direccion
-    let tipo = req.body.tipo
-    let responsable = req.body.responsable
+    let id_taxidriver = req.params.id_taxidriver
+    let fecha = req.body.fecha
+    let trabajo = req.body.trabajo
     let email = req.body.email
-    let telefono = req.body.telefono
-    let sql = "UPDATE empresas SET nombre = ?, direccion = ?, tipo = ? , responsable = ?, email = ?, telefono = ? WHERE id = ?"
-    conexion.query(sql, [nombre, direccion, tipo, responsable, email, telefono, id], function (error, results) {
+    // let requisitos = req.body.requisitos
+    // let dotacion = req.body.dotacion
+    // let masinfo = req.body.masinfo
+    // let id_user = req.body.id_user
+    let sql = "UPDATE trabajo SET fecha = ?, trabajo = ?, email = ? , id_taxidriver = ? WHERE id = ?"
+    conexion.query(sql, [fecha, trabajo, email, id_taxidriver, id], function (error, results) {
         if (error) {
             throw error
         } else {
@@ -243,59 +162,6 @@ app.put('/api/empresas/:id', (req, res) => {
     })
 })
 
-
-//BECAS
-app.put('/api/becas/:id', (req, res) => {
-    let id = req.params.id
-    let descripcion = req.body.descripcion
-    let destinatarios = req.body.destinatarios
-    let numeroplazas = req.body.numeroplazas
-    let requisitos = req.body.requisitos
-    let dotacion = req.body.dotacion
-    let masinfo = req.body.masinfo
-    let sql = "UPDATE becas SET descripcion = ?, destinatarios = ?, numeroplazas = ? , requisitos = ?, dotacion = ?, masinfo = ? WHERE id = ?"
-    conexionBecas.query(sql, [descripcion, destinatarios, numeroplazas, requisitos, dotacion, masinfo, id], function (error, results) {
-        if (error) {
-            throw error
-        } else {
-            res.send(results)
-        }
-    })
-})
-
-
-//cursos
-app.put('/api/cursos/:id', (req, res) => {
-    let id = req.params.id
-    let titulo = req.body.titulo
-    let descripcion = req.body.descripcion
-    let temario = req.body.temario
-    let fechaIn = req.body.fechaIn
-    let fechaFin = req.body.fechaFin
-    let presencial = req.body.presencial
-    let semipresencial = req.body.semipresencial
-    let precio = req.body.precio
-    let onlineCourse = req.body.onlineCourse
-    let sql = "UPDATE cursos SET titulo = ?, descripcion = ?, temario = ?, fechaIn = ? , fechaFin = ?, presencial = ?, precio = ?, semipresencial = ?, onlineCourse = ? WHERE id = ?"
-    conexionBecas.query(sql, [titulo, descripcion, temario, fechaIn, fechaFin, presencial, precio, semipresencial, onlineCourse, id], function (error, results) {
-        if (error) {
-            throw error
-        } else {
-            res.send(results)
-        }
-    })
-})
-
-//Eliminar ubicacion
-app.delete('/api/empresas/:id', (req, res) => {
-    conexion.query('DELETE FROM empresas WHERE id = ?', [req.params.id], function (error, filas) {
-        if (error) {
-            throw error
-        } else {
-            res.send(filas)
-        }
-    })
-})
 
 
 // const puerto = process.env.PUERTO || 3000
@@ -304,8 +170,8 @@ app.delete('/api/empresas/:id', (req, res) => {
 // })
 
 //BECAS
-app.delete('/api/becas/:id', (req, res) => {
-    conexionBecas.query('DELETE FROM becas WHERE id = ?', [req.params.id], function (error, filas) {
+app.delete('/api/trabajo/:id', (req, res) => {
+    conexion.query('DELETE FROM trabajo WHERE id = ?', [req.params.id_taxidriver], function (error, filas) {
         if (error) {
             throw error
         } else {
@@ -314,27 +180,21 @@ app.delete('/api/becas/:id', (req, res) => {
     })
 })
 
-//cursos
-app.delete('/api/cursos/:id', (req, res) => {
-    conexionBecas.query('DELETE FROM cursos WHERE id = ?', [req.params.id], function (error, filas) {
-        if (error) {
-            throw error
-        } else {
-            res.send(filas)
-        }
-    })
-})
+
 
 
 //FORMULARIO DE REGISTRO
 app.post("/register", async (req, res) => {
-    const user = req.body.user;
-    const name = req.body.name;
+    const id = req.body.id;
+    const nombre = req.body.nombre;
+    const apellido1 = req.body.apellido1;
+    const apellido2 = req.body.apellido2;
+    const email = req.body.email;
     const pass = req.body.pass;
 
     let passwordHash = await bcrypt.hash(pass, 8)
 
-    conexionAuth.query("INSERT INTO auth SET ?", { user: user, name: name, pass: passwordHash }, async (error, results) => {
+    conexion.query("INSERT INTO taxidriver SET ?", { Nombre: nombre, Apellido1: apellido1, Apellido2: apellido2, Email: email, pass: passwordHash }, async (error, results) => {
         if (error) {
             console.log(error)
         } else {
@@ -352,14 +212,19 @@ app.post("/register", async (req, res) => {
 })
 
 
+// const user_id = 0;
+
+// console.log(user)
 //FORMULARIO DE INICIO SESION
 app.post("/auth", async (req, res) => {
-    const user = req.body.user;
+    // user_id: req.body.id
+    const nombre = req.body.nombre;
     const pass = req.body.pass;
     let passwordHash = await bcrypt.hash(pass, 8)
 
-    if(user && pass) {
-        conexionAuth.query("SELECT * FROM auth WHERE user = ?", [user], async (error, results) => {
+    if(nombre && pass) {
+        conexion.query("SELECT * FROM `taxidriver` WHERE `Nombre` = ? ", [nombre], async (error, results) => {
+            // console.log(id)
             if(results.length == 0 || !(await bcrypt.compare(pass, results[0].pass))) {
                 // console.log(results[0]) el result[0] quiere decir que almacena todos los datos que coje por el nombre de usuario en el results, entonces como en una consulta solo habra un dato por eso compara con el result[0] porque como hay un dato el index sera 0
                 res.render("login", {
@@ -373,7 +238,7 @@ app.post("/auth", async (req, res) => {
                 })
             }else {
                 req.session.loggedin = true;
-                req.session.name = results[0].name;
+                req.session.nombre = results[0].nombre;
                 res.render("login", {
                     alert: true,
                     alertTitle: "Conexion Exitosa",
@@ -404,12 +269,12 @@ app.get("/", (req, res) => {
     if(req.session.loggedin) {
         res.render("home", {
             login: true,
-            name: req.session.name
+            nombre: req.session.nombre
         });
     }else {
         res.render("home", {
             login: false,
-            name: "debe iniciar sesion"
+            nombre: "debe iniciar sesion"
         })
     }
 })
@@ -418,12 +283,12 @@ app.get("/becas", (req, res) => {
     if(req.session.loggedin) {
         res.render("becas", {
             login: true,
-            name: req.session.name
+            nombre: req.session.nombre
         });
     }else {
         res.render("becas", {
             login: false,
-            name: "debe iniciar sesion"
+            nombre: "debe iniciar sesion"
         })
     }
 })
@@ -433,12 +298,12 @@ app.get("/becasUsuario", (req, res) => {
     if(req.session.loggedin) {
         res.render("becasUsuario", {
             login: true,
-            name: req.session.name
+            nombre: req.session.nombre
         });
     }else {
         res.render("becasUsuario", {
             login: false,
-            name: "debe iniciar sesion"
+            nombre: "debe iniciar sesion"
         })
     }
 })
